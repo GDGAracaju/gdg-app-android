@@ -3,7 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#FFFFFF">
 
 
@@ -30,7 +31,6 @@
             android:background="#FFFFFF"
             android:visibility="gone"/>
 
-
     <ProgressBar style="?android:attr/progressBarStyle"
                  android:id="@+id/loadingStateView"
                  android:layout_width="48dp"
@@ -46,6 +46,5 @@
     <include layout="@layout/error_state_layout"
              android:visibility="gone"
              android:id="@+id/errorStateView"/>
-
 
 </RelativeLayout>
