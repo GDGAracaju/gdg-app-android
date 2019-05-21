@@ -30,7 +30,7 @@ internal class MainActivity : AppCompatActivity() {
         viewModel.listToEvents().observe(this, Observer {
             adapter.clear()
             it.forEach {
-                adapter.add(NewsEntry(it.name))
+                adapter.add(NewsEntry(it.nameEvent))
             }
             newsList.adapter = adapter
         })

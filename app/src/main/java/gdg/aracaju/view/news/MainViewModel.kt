@@ -3,7 +3,7 @@ package gdg.aracaju.view.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import gdg.aracaju.data.api.events.EventsResponse
+import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.service.EventsService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
@@ -11,12 +11,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class MainViewModel(private val service: EventsService) : ViewModel(), CoroutineScope {
+internal class MainViewModel(private val service: EventsService) : ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Main
 
-    private val emmitNews: MutableLiveData<List<EventsResponse>> = MutableLiveData()
+    private val emmitNews: MutableLiveData<List<Event>> = MutableLiveData()
     private val emmitLoading: MutableLiveData<Boolean> = MutableLiveData()
 
     private val jobs = ArrayList<Job>()
@@ -25,7 +25,7 @@ class MainViewModel(private val service: EventsService) : ViewModel(), Coroutine
         this.add(job)
     }
 
-    fun listToEvents(): LiveData<List<EventsResponse>> = emmitNews
+    fun listToEvents(): LiveData<List<Event>> = emmitNews
 
     fun showEvents() {
         jobs add launch {

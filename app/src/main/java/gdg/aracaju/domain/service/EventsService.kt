@@ -1,8 +1,8 @@
 package gdg.aracaju.domain.service
 
-import gdg.aracaju.data.api.events.EventsResponse
+import gdg.aracaju.domain.model.Event
 
-interface EventsService {
+internal interface EventsService {
 
-    suspend fun fetch(): List<EventsResponse>
+    suspend fun fetch(): List<Event>
 }
