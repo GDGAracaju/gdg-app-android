@@ -3,6 +3,7 @@ package gdg.aracaju.view.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import gdg.aracaju.data.api.events.EventsResponse
 import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.domain.service.EventsService

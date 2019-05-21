@@ -12,7 +12,7 @@ internal class EventsRepository(private val api: ServerGateway = ApiBuilder) : E
         return api.fetchEvents().map { it.toDomain() }
     }
 
-    fun EventsResponse.toDomain(): Event = with(this) {
+    private fun EventsResponse.toDomain(): Event = with(this) {
         Event(
             nameEvent = name,
             date = date,

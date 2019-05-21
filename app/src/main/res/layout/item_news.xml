@@ -13,8 +13,7 @@
         app:strokeColor="#c6c6c6"
         app:strokeWidth="1dp"
         android:minHeight="120dp"
-        app:cardElevation="0dp"
-        >
+        app:cardElevation="0dp">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -93,11 +92,7 @@
                   android:layout_alignTop="@id/imageEventSchedule"
                   android:layout_marginStart="8dp"
                   android:gravity="start|bottom"
-                  tools:text="09:00 - 17:00"
-
-
-        />
+                  tools:text="09:00 - 17:00"/>
     </RelativeLayout>
-
 
 </com.google.android.material.card.MaterialCardView>
