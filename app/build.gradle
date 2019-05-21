@@ -20,6 +20,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
 }
 
 dependencies {
@@ -31,7 +48,14 @@ dependencies {
     implementation Dependencies.cardView
     implementation Dependencies.recyclerView
     implementation Dependencies.groupie
+    implementation Dependencies.groupieKotlin
     implementation Dependencies.firebaseCore
+    implementation Dependencies.coroutine
+    implementation Dependencies.coroutineAndroid
+    implementation Dependencies.viewModel
+    implementation Dependencies.aacLifecycleJava8
+    implementation Dependencies.material
+    implementation Dependencies.firebaseDataBase
 
     testImplementation DependenciesTest.junit4
     androidTestImplementation DependenciesTest.androidRunner
