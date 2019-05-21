@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:contentPadding="8dp"
+        app:cardCornerRadius="4dp"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="1dp"
+        android:minHeight="120dp">
+
+    <TextView android:orientation="vertical"
+              android:id="@+id/titleEvent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="16dp">
+    </TextView>
+
+</com.google.android.material.card.MaterialCardView>
