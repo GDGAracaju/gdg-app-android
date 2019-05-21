@@ -32,7 +32,6 @@ internal class MainActivity : AppCompatActivity() {
         viewModel.showEvents()
 
         viewModel.listToEvents().observe(this, Observer { state ->
-            adapter.clear()
             getState(state)
         })
     }
@@ -85,6 +84,7 @@ internal class MainActivity : AppCompatActivity() {
     }
 
     private fun showContent(events: List<Event>?) {
+        adapter.clear()
         events?.let {
             when (events.isEmpty()) {
                 false -> {
