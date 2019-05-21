@@ -53,5 +53,3 @@ object DependenciesTest {
     const val androidRunner = "androidx.test:runner:${VersionsTest.runner}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${VersionsTest.espresso}"
 }
-
-
