@@ -65,3 +65,6 @@ ktlint-report-in-checkstyle-format.xml
 
 # Proguard mapping
 proguard/mapping.txt
+
+#firebase json
+google-services.json
