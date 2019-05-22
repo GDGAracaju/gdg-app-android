@@ -50,7 +50,7 @@ private suspend fun <T : Any> readReference(
 
     continuation.invokeOnCancellation { reference.removeEventListener(listener) }
 
-    reference.addListenerForSingleValueEvent(listener)
+    reference.addValueEventListener(listener)
 }
 
 private suspend fun <T : Any> readReferences(

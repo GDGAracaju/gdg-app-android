@@ -9,6 +9,6 @@ internal class EventsRepository(private val api: ServerGateway = ApiBuilder) : E
 
     override suspend fun fetch(): List<Event> {
 
-        return api.fetchEvents().await().map { Event(it.name) }
+        return api.fetchEvents().map { Event(it.name) }
     }
 }
