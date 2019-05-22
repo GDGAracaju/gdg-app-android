@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_margin="8dp"
         app:contentPadding="8dp"
         app:cardCornerRadius="4dp"
-        app:strokeColor="#c6c6c6"
-        app:strokeWidth="1dp"
-        android:minHeight="120dp"
-        app:cardElevation="0dp">
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="1dp">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -25,6 +22,7 @@
                    android:scaleType="fitCenter"
                    android:id="@+id/imageEvent"
                    android:minHeight="120dp"
+                   android:layout_marginTop="16dp"
                    android:layout_alignParentTop="true"
                    android:layout_alignBottom="@id/imageEventSchedule"
                    android:contentDescription="@string/image_of_event"/>
@@ -94,5 +92,4 @@
                   android:gravity="start|bottom"
                   tools:text="09:00 - 17:00"/>
     </RelativeLayout>
-
 </com.google.android.material.card.MaterialCardView>

@@ -8,7 +8,6 @@ import gdg.aracaju.domain.service.EventsService
 internal class EventsRepository(private val api: ServerGateway = ApiBuilder) : EventsService {
 
     override suspend fun fetch(): List<Event> {
-
         return api.fetchEvents().map { it.toDomain() }
     }
 

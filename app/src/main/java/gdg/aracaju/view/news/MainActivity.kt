@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import gdg.aracaju.data.api.events.EventsRepository
@@ -22,7 +22,7 @@ internal class MainActivity : AppCompatActivity() {
         ViewModelProviders.of(this, MainViewModelFactory(service)).get(MainViewModel::class.java)
     }
     private val adapter by lazy { GroupAdapter<ViewHolder>() }
-    private val manager by lazy { LinearLayoutManager(this) }
+    private val manager by lazy { GridLayoutManager(this, 2) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
