@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GdgNews</string>
+    <string name="image_of_event">image of event</string>
 </resources>
