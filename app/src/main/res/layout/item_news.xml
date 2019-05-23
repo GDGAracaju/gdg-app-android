@@ -5,12 +5,16 @@
         style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         app:contentPadding="8dp"
         app:cardCornerRadius="4dp"
-        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeColor="#c6c6c6"
         app:strokeWidth="1dp"
-        android:minHeight="120dp">
+        android:minHeight="120dp"
+        app:cardElevation="0dp"
+        >
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -19,7 +23,7 @@
         <ImageView android:layout_width="100dp"
                    android:layout_height="wrap_content"
                    android:layout_alignParentStart="true"
-                   android:scaleType="fitXY"
+                   android:scaleType="fitCenter"
                    android:id="@+id/imageEvent"
                    android:minHeight="120dp"
                    android:layout_alignParentTop="true"
@@ -30,7 +34,8 @@
                   android:id="@+id/titleEvent"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:padding="16dp"
+                  android:layout_marginTop="16dp"
+                  android:layout_marginStart="16dp"
                   android:layout_toEndOf="@id/imageEvent"
                   android:layout_alignParentTop="true"
                   android:layout_alignParentEnd="true"
@@ -50,9 +55,10 @@
                    android:layout_height="24dp"
                    android:id="@+id/imageEventDate"
                    android:layout_toEndOf="@id/imageEvent"
+                   android:layout_marginTop="8dp"
                    android:layout_below="@+id/titleEvent"
                    android:layout_marginStart="16dp"
-                   app:srcCompat="@drawable/ic_event_date" android:contentDescription="TODO"/>
+                   app:srcCompat="@drawable/ic_event_date"/>
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -60,9 +66,11 @@
                   android:layout_toEndOf="@id/imageEventDate"
                   android:layout_below="@id/titleEvent"
                   android:layout_alignBottom="@id/imageEventDate"
+                  android:layout_alignTop="@id/imageEventDate"
                   android:gravity="start|bottom"
                   android:layout_marginStart="8dp"
                   tools:text="20/09/2019"
+
         />
 
 
@@ -72,12 +80,13 @@
                    android:layout_toEndOf="@+id/imageEvent"
                    android:layout_below="@id/eventDate"
                    android:layout_marginStart="16dp"
-                   android:layout_marginTop="16dp"
-                   app:srcCompat="@drawable/ic_event_schedule"/>
+                   android:layout_marginTop="8dp"
+                   app:srcCompat="@drawable/ic_event_schedule"
+                   android:layout_marginBottom="16dp"/>
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="match_parent"
-                  android:id="@+id/eventSchedule"
+                  android:id="@+id/eventTime"
                   android:layout_toEndOf="@id/imageEventSchedule"
                   android:layout_below="@id/eventDate"
                   android:layout_alignBottom="@id/imageEventSchedule"
@@ -85,6 +94,7 @@
                   android:layout_marginStart="8dp"
                   android:gravity="start|bottom"
                   tools:text="09:00 - 17:00"
+
 
         />
     </RelativeLayout>

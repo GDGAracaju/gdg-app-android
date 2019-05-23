@@ -10,6 +10,7 @@ object Versions {
     const val firebaseDatabase = "16.1.0"
     const val coroutine = "1.1.1"
     const val lifecycle = "2.0.0"
+    const val picasso = "2.71828"
 }
 
 object Dependencies {
@@ -36,6 +37,7 @@ object Dependencies {
     const val groupie = "com.xwray:groupie:${Versions.groupie}"
     const val groupieKotlin = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
     const val aacLifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+    const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
 }
 
 object VersionsTest {
