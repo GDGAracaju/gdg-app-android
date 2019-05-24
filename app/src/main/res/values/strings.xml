@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GdgNews</string>
     <string name="image_of_event">image of event</string>
+    <string name="nenhum_evento_encontrado">Nenhum evento encontrado :(</string>
 </resources>
