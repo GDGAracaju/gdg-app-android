@@ -34,12 +34,22 @@
               android:id="@+id/emptyStateText"
               android:layout_height="wrap_content"
               android:minHeight="12dp"
-              android:textSize="12sp"
+              android:textSize="14sp"
               android:gravity="center"
-              android:layout_below="@+id/toolBarMainActivity"
-              android:layout_alignBottom="@+id/toolBarMainActivity"
+              android:layout_centerInParent="true"
               android:visibility="invisible"
               android:text="@string/nenhum_evento_encontrado"/>
+
+
+
+
+    <ProgressBar style="?android:attr/progressBarStyle"
+                 android:id="@+id/loadingStateView"
+                 android:layout_width="48dp"
+                 android:layout_height="48dp"
+                 android:layout_gravity="center"
+                 android:layout_centerInParent="true"
+                 tools:visibility="invisible" />
 
 
 
