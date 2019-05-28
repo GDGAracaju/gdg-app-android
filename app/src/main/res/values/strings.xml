@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">GdgNews</string>
     <string name="image_of_event">image of event</string>
-    <string name="nenhum_evento_encontrado">Nenhum evento encontrado :(</string>
+    <string name="text_no_events_found">Nenhum evento encontrado :(</string>
     <string name="Loading">loading</string>
+    <string name="text_button_try_again">Tentar novamente</string>
+    <string name="title_no_events_found">Nenhum evento cadastrado</string>
+    <string name="text_description_no_events_found">Não há eventos cadastrados. Fique ligado, o proximo evento logo
+        estará disponível aqui!
+    </string>
+    <string name="text_title_error">Ops, algo deu errado.</string>
+    <string name="text_description_error">Não conseguimos carregar os eventos</string>
 </resources>

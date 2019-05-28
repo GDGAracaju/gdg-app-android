@@ -1,13 +1,11 @@
 package gdg.aracaju.view.news
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import gdg.aracaju.data.api.events.EventsRepository
@@ -15,6 +13,7 @@ import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.error_state_layout.*
 
 internal class MainActivity : AppCompatActivity() {
 
@@ -33,6 +32,7 @@ internal class MainActivity : AppCompatActivity() {
 
         viewModel.showEvents()
 
+
         viewModel.listToEvents().observe(this, Observer { state ->
             adapter.clear()
             getState(state)
@@ -42,62 +42,72 @@ internal class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun getState(state: ScreenState) {
+
+        when (state) {
+            is ScreenState.Content<*> -> showContent(state.result as? List<Event>)
+            is ScreenState.Loading -> showLoadingView()
+            is ScreenState.Error -> showErrorState()
+        }
+    }
+
     private fun setupViews() {
-        newsList.apply {
+        eventsRv.apply {
             layoutManager = manager
         }
     }
 
-    fun showList() {
-        loadingStateView.visibility = View.INVISIBLE
-        emptyStateText.visibility = View.INVISIBLE
-        newsList.visibility = View.VISIBLE
+    private fun showList() {
+        loadingStateView.isVisible = false
+        emptyStateView.isVisible = false
+        errorStateView.isVisible = false
+        eventsRv.isVisible = true
+
 
     }
 
-    fun showEmptyState() {
-        newsList.visibility = View.INVISIBLE
-        emptyStateText.visibility = View.VISIBLE
+    private fun showEmptyState() {
+        loadingStateView.isVisible = false
+        errorStateView.isVisible = false
+        eventsRv.isVisible = false
+        emptyStateView.isVisible = true
 
     }
 
-    fun showErrorState(message: String) {
-        Snackbar.make(
-            toolBarMainActivity, message,
-            Snackbar.LENGTH_LONG
-        ).show()
-    }
-
-    fun showLoadingView() {
-        loadingStateView.visibility = View.VISIBLE
-    }
-
-    fun getState(state: ScreenState) {
-
-        when (state) {
-            is ScreenState.Content<*> -> {
-                val myEvents = state.result as List<Event>
-                if (myEvents.isEmpty()) {
-                    showEmptyState()
-                } else {
-
-                    myEvents.forEach { event ->
-                        adapter.add(NewsEntry(event))
-                    }
-                    newsList.adapter = adapter
-                    getState(ScreenState.Loading)
-                    showList()
-                    Log.e("Sucesso", "Deu bom")
-                }
-
-
-            }
-            is ScreenState.Loading -> {
-                showLoadingView()
-            }
-            is ScreenState.Error -> {
-                showErrorState("Error: Failed to fetch information")
-            }
+    private fun showErrorState() {
+        loadingStateView.isVisible = false
+        eventsRv.isVisible = false
+        emptyStateView.isVisible = false
+        errorStateView.isVisible = true
+        buttonErrorTryAgain.setOnClickListener {
+            viewModel.retry()
         }
+
     }
+
+    private fun showLoadingView() {
+        adapter.clear()
+        emptyStateView.isVisible = false
+        errorStateView.isVisible = false
+        eventsRv.isVisible = false
+        loadingStateView.isVisible = true
+    }
+
+    private fun showContent(events: List<Event>?) {
+
+        events?.let {
+            when (events.isEmpty()) {
+                false -> {
+                    it
+                        .forEach { event -> adapter.add(NewsEntry(event)) }
+                        .also {
+                            eventsRv.adapter = adapter
+                            showList()
+                        }
+                }
+                true -> showEmptyState()
+            }
+        } ?: showEmptyState()
+    }
+
 }
