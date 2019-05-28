@@ -3,6 +3,7 @@ package gdg.aracaju.view.news
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.domain.service.EventsService
 import gdg.aracaju.view.getOrError
@@ -17,7 +18,7 @@ internal class MainViewModel(private val service: EventsService) : ViewModel(), 
     override val coroutineContext: CoroutineContext
         get() = Main
 
-    private val emmitState: MutableLiveData<ScreenState> = MutableLiveData()
+    private val emmitState: MutableLiveData<ScreenState<List<Event>>> = MutableLiveData()
 
     private val jobs = ArrayList<Job>()
 
@@ -25,7 +26,7 @@ internal class MainViewModel(private val service: EventsService) : ViewModel(), 
         this.add(job)
     }
 
-    fun listToEvents(): LiveData<ScreenState> = emmitState
+    fun listToEvents(): LiveData<ScreenState<List<Event>>> = emmitState
 
     fun showEvents() {
         jobs add launch {

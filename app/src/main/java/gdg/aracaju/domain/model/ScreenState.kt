@@ -1,9 +1,7 @@
 package gdg.aracaju.domain.model
 
-import java.lang.Exception
-
-sealed class ScreenState {
-    object Loading : ScreenState()
-    data class Error(val e: Throwable) : ScreenState()
-    data class Content<T>(val result: T) : ScreenState()
+sealed class ScreenState<out T> {
+    object Loading : ScreenState<Nothing>()
+    data class Error(val e: Throwable) : ScreenState<Nothing>()
+    data class Content<out T>(val result: T) : ScreenState<T>()
 }

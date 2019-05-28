@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.error_state_layout.*
 
 internal class MainActivity : AppCompatActivity() {
 
-
     private val service by lazy { EventsRepository() }
     private val viewModel by lazy {
         ViewModelProviders.of(this, MainViewModelFactory(service)).get(MainViewModel::class.java)
@@ -32,20 +31,16 @@ internal class MainActivity : AppCompatActivity() {
 
         viewModel.showEvents()
 
-
         viewModel.listToEvents().observe(this, Observer { state ->
             adapter.clear()
             getState(state)
-
-
-            /* */
         })
     }
 
-    private fun getState(state: ScreenState) {
+    private fun getState(state: ScreenState<List<Event>>) {
 
         when (state) {
-            is ScreenState.Content<*> -> showContent(state.result as? List<Event>)
+            is ScreenState.Content -> showContent(state.result)
             is ScreenState.Loading -> showLoadingView()
             is ScreenState.Error -> showErrorState()
         }
@@ -62,8 +57,6 @@ internal class MainActivity : AppCompatActivity() {
         emptyStateView.isVisible = false
         errorStateView.isVisible = false
         eventsRv.isVisible = true
-
-
     }
 
     private fun showEmptyState() {
@@ -71,7 +64,6 @@ internal class MainActivity : AppCompatActivity() {
         errorStateView.isVisible = false
         eventsRv.isVisible = false
         emptyStateView.isVisible = true
-
     }
 
     private fun showErrorState() {
@@ -80,9 +72,8 @@ internal class MainActivity : AppCompatActivity() {
         emptyStateView.isVisible = false
         errorStateView.isVisible = true
         buttonErrorTryAgain.setOnClickListener {
-            viewModel.retry()
+            viewModel.showEvents()
         }
-
     }
 
     private fun showLoadingView() {
@@ -94,7 +85,6 @@ internal class MainActivity : AppCompatActivity() {
     }
 
     private fun showContent(events: List<Event>?) {
-
         events?.let {
             when (events.isEmpty()) {
                 false -> {
@@ -109,5 +99,4 @@ internal class MainActivity : AppCompatActivity() {
             }
         } ?: showEmptyState()
     }
-
 }
