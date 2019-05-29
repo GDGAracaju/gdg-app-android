@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.domain.service.EventsService
+import gdg.aracaju.view.add
 import gdg.aracaju.view.getOrError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
@@ -21,10 +22,6 @@ internal class MainViewModel(private val service: EventsService) : ViewModel(), 
     private val emmitState: MutableLiveData<ScreenState<List<Event>>> = MutableLiveData()
 
     private val jobs = ArrayList<Job>()
-
-    private infix fun ArrayList<Job>.add(job: Job) {
-        this.add(job)
-    }
 
     fun listToEvents(): LiveData<ScreenState<List<Event>>> = emmitState
 

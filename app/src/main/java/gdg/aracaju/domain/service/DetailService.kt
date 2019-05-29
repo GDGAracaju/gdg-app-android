@@ -4,5 +4,5 @@ import gdg.aracaju.domain.model.Detail
 
 interface DetailService {
 
-    suspend fun fetchDetail(id: String): Detail
+    suspend fun fetchDetail(id: Int): Detail
 }

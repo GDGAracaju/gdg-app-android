@@ -13,6 +13,7 @@ internal class EventsRepository(private val api: ServerGateway = ApiBuilder) : E
 
     private fun EventsResponse.toDomain(): Event = with(this) {
         Event(
+            id = id_details,
             nameEvent = name,
             date = date,
             imgUrl = img,

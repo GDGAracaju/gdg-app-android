@@ -58,6 +58,7 @@ dependencies {
     implementation Dependencies.firebaseDataBase
     implementation Dependencies.picasso
 
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
     testImplementation DependenciesTest.junit4
     androidTestImplementation DependenciesTest.androidRunner
     androidTestImplementation DependenciesTest.espressoCore

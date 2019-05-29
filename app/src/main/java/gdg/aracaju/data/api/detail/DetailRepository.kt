@@ -10,7 +10,7 @@ import gdg.aracaju.domain.service.DetailService
 
 internal class DetailRepository(private val api: ServerGateway = ApiBuilder) : DetailService {
 
-    override suspend fun fetchDetail(id: String): Detail {
+    override suspend fun fetchDetail(id: Int): Detail {
         return api.fetchDetails(id).toDomain()
     }
 
@@ -26,7 +26,7 @@ internal class DetailRepository(private val api: ServerGateway = ApiBuilder) : D
             subscriptionUrl = subscription,
             time = time,
             title = title,
-            talks = talks.map { Talk(author = it.author, title = it.title) },
+            talks = talks.filter { it != null }.map { Talk(author = it!!.author, title = it!!.title) },
             type = mapType(type)
         )
     }

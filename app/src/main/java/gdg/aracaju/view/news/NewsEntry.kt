@@ -7,7 +7,7 @@ import gdg.aracaju.domain.model.Event
 import gdg.aracaju.news.R
 import kotlinx.android.synthetic.main.item_news.view.*
 
-internal class NewsEntry(private val event: Event) : Item() {
+internal class NewsEntry(private val event: Event, private val onClick: () -> Unit) : Item() {
 
     override fun getLayout() = R.layout.item_news
 
@@ -17,5 +17,8 @@ internal class NewsEntry(private val event: Event) : Item() {
         viewHolder.itemView.eventTime.text = event.time
         Picasso.get().load(event.imgUrl).into(viewHolder.itemView.imageEvent)
 
+        viewHolder.itemView.card.setOnClickListener {
+            onClick()
+        }
     }
 }

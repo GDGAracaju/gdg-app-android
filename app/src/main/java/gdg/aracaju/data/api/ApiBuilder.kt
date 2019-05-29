@@ -9,6 +9,7 @@ import gdg.aracaju.data.api.extensions.readList
 import gdg.aracaju.data.api.extensions.readValue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.withTimeout
 import kotlin.coroutines.CoroutineContext
 
 internal object ApiBuilder : ServerGateway, CoroutineScope {
@@ -16,13 +17,17 @@ internal object ApiBuilder : ServerGateway, CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = IO
 
+    private const val TIMEOUT = 10_000L
+
     private val instance by lazy { FirebaseDatabase.getInstance() }
 
     override suspend fun fetchEvents(): List<EventsResponse> {
-        return instance.getReference(EVENT).orderByKey().readList()
+        return withTimeout(TIMEOUT) {
+            instance.getReference(EVENT).orderByKey().readList<EventsResponse>()
+        }
     }
 
-    override suspend fun fetchDetails(id: String): DetailResponse {
-        return instance.getReference(DETAIL).child(id).readValue()
+    override suspend fun fetchDetails(id: Int): DetailResponse {
+        return instance.getReference(DETAIL).child(id.toString()).readValue()
     }
 }

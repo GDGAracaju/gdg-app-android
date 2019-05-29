@@ -2,36 +2,112 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="match_parent"
         tools:context="gdg.aracaju.view.detail.DetailActivity">
 
-    <view
-            android:id="@+id/map"
+    <fragment
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="180dp"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            tools:context=".MapsActivity"/>
 
     <TextView
             android:id="@+id/eventTitle"
             android:layout_below="@+id/map"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:gravity="center|start"
+            android:layout_toStartOf="@+id/share"
             android:layout_marginStart="16dp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
             tools:text="Google I/O Extended"/>
 
+    <ImageView
+            android:id="@+id/share"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/map"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/ic_share"
+            android:background="?android:attr/actionBarItemBackground"
+    />
+
     <TextView
-            android:id="@+id/schedule"
+            android:id="@+id/scheduleEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="4dp"
+            android:gravity="center|start"
             android:layout_toStartOf="@id/eventTitle"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/eventTitle"/>
 
+    <TextView
+            android:id="@+id/addressEvent"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/scheduleEvent"
+            android:layout_marginTop="4dp"
+            android:layout_toStartOf="@id/eventTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:gravity="center|start"
+            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSubscription"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_button_subscription"
+            android:textAllCaps="false"
+            android:layout_below="@id/addressEvent"
+            android:visibility="visible"
+            android:layout_margin="16dp"/>
+
+    <TextView
+            android:id="@+id/labelTalks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonSubscription"
+            android:layout_marginStart="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/title_list_talks"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/talksRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/labelTalks"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"/>
+
+    <ProgressBar style="?android:attr/progressBarStyle"
+                 android:id="@+id/loadingStateView"
+                 android:layout_width="48dp"
+                 android:layout_height="48dp"
+                 android:layout_gravity="center"
+                 android:layout_centerInParent="true"
+                 tools:visibility="gone"/>
+
+    <include layout="@layout/empty_state_layout"
+             android:visibility="gone"
+             android:id="@+id/emptyStateView"/>
+
+    <include layout="@layout/error_state_layout"
+             android:visibility="gone"
+             android:id="@+id/errorStateView"/>
 
 </RelativeLayout>

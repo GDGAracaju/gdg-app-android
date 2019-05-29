@@ -10,4 +10,7 @@
     </string>
     <string name="text_title_error">Ops, algo deu errado.</string>
     <string name="text_description_error">Não conseguimos carregar os eventos</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_button_subscription">Inscrever-se</string>
+    <string name="title_list_talks">Palestras</string>
 </resources>

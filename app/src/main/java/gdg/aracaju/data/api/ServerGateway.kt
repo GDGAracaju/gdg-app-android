@@ -7,5 +7,5 @@ internal interface ServerGateway {
 
     suspend fun fetchEvents(): List<EventsResponse>
 
-    suspend fun fetchDetails(id: String): DetailResponse
+    suspend fun fetchDetails(id: Int): DetailResponse
 }
