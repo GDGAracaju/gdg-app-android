@@ -16,6 +16,20 @@ suspend fun <T> getOrError(block: suspend CoroutineScope.() -> T): ScreenState<T
     }
 }
 
+suspend fun <T> getOrErrorBy(
+    block: suspend CoroutineScope.() -> T,
+    onSuccess: (T) -> Unit,
+    onError: (Throwable) -> Unit
+) {
+    try {
+        GlobalScope.async { block() }.let {
+            onSuccess(it.await())
+        }
+    } catch (e: Exception) {
+        onError(e)
+    }
+}
+
 infix fun ArrayList<Job>.add(job: Job) {
     this.add(job)
 }
