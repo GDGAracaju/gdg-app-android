@@ -13,6 +13,12 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_button_subscription">Inscrever-se</string>
     <string name="title_list_talks">Palestras</string>
-    <string name="label_date">Data: </string>
-    <string name="label_hour">Horário: </string>
+    <string name="label_date">Data:</string>
+    <string name="label_hour">Horário:</string>
+
+    <string name="menu_map">Mapa</string>
+    <string name="menu_calendar">Calendário</string>
+    <string name="menu_share">Compartilhar</string>
+
+    <string name="title_activity_maps_detail">Map</string>
 </resources>

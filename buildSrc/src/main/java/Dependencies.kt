@@ -3,6 +3,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val constraint = "1.1.3"
     const val androidX = "1.0.0"
+    const val material = "1.1.0-alpha07"
     const val groupie = "2.3.0"
     const val gms = "4.2.0"
     const val gradle = "3.4.1"
@@ -21,7 +22,7 @@ object Dependencies {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.androidX}"
     const val cardView = "androidx.cardview:cardview:${Versions.androidX}"
-    const val material = "com.google.android.material:material:${Versions.androidX}"
+    const val material = "com.google.android.material:material:${Versions.material}"
 
     const val gms = "com.google.gms:google-services:${Versions.gms}"
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
