@@ -89,16 +89,14 @@ internal class MainActivity : AppCompatActivity() {
         events?.let {
             when (events.isEmpty()) {
                 false -> {
-                    it
-                        .forEach { event ->
-                            adapter.add(NewsEntry(event) {
-                                startActivity(DetailActivity.newInstance(this, event.id))
-                            })
-                        }
-                        .also {
-                            eventsRv.adapter = adapter
-                            showList()
-                        }
+                    it.forEach { event ->
+                        adapter.add(NewsEntry(event) {
+                            startActivity(DetailActivity.newInstance(this, event.id))
+                        })
+                    }.also {
+                        eventsRv.adapter = adapter
+                        showList()
+                    }
                 }
                 true -> showEmptyState()
             }

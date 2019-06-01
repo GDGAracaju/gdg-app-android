@@ -1,5 +1,7 @@
 package gdg.aracaju.domain.model
 
+import java.io.Serializable
+
 data class Detail(
     val address: String,
     val date: String,
@@ -15,7 +17,7 @@ data class Detail(
 data class Location(
     val latitude: String,
     val longitude: String
-)
+) : Serializable
 
 data class Talk(
     val author: String,

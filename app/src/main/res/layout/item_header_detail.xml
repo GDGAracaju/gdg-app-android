@@ -13,8 +13,9 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:gravity="center|start"
+            android:textColor="@color/black"
             android:layout_marginStart="8dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             tools:text="Google I/O Extended"/>
 
 
@@ -25,7 +26,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:textSize="16sp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:gravity="center|start"
             android:layout_toStartOf="@id/eventTitle"
             android:layout_alignParentEnd="true"
@@ -42,7 +43,7 @@
             android:textSize="16sp"
             android:gravity="center|start"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="24dp"
             android:layout_height="wrap_content"/>
 
     <TextView
@@ -52,5 +53,5 @@
             android:layout_below="@id/addressEvent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="8dp"/>
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package gdg.aracaju.view.detail
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -21,29 +23,29 @@ class MapsDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps_detail)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-//        viewModel.listToLocation().observe(this, Observer {
-//            val location = LatLng(it.location.latitude.toDouble(), it.location.longitude.toDouble())
-//            googleMap.apply {
-//                addMarker(MarkerOptions().position(location).title(it.title).anchor(0.5f, 0.5f))
-//                uiSettings.isMyLocationButtonEnabled = true
-//                uiSettings.isCompassEnabled = true
-//                animateCamera(CameraUpdateFactory.newLatLngZoom(location, DetailActivity.ZOOM_LEVEL_BUILDING))
-//            }
-//        })
-
-        mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        intent?.apply {
+            val presentation = (extras?.get(ID) as? LocationPresentation)
+            presentation?.let {
+                val latLng = LatLng(it.location.latitude.toDouble(), it.location.longitude.toDouble())
+                with(googleMap) {
+                    addMarker(MarkerOptions().position(latLng).title(it.title).anchor(0.5f, 0.5f))
+                    uiSettings.isMyLocationButtonEnabled = true
+                    uiSettings.isCompassEnabled = true
+                    animateCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            latLng,
+                            ZOOM_LEVEL_BUILDING
+                        )
+                    )
+                }
+            }
+        }
     }
 
     private fun setupTransportApp(location: Location) {
@@ -63,6 +65,14 @@ class MapsDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     companion object {
-        private val ZOOM_LEVEL_BUILDING = 20f
+        private const val ID = "detail_map"
+
+        fun newInstance(context: Context, location: LocationPresentation): Intent {
+            return Intent(context, MapsDetailActivity::class.java).apply {
+                putExtra(ID, location)
+            }
+        }
+
+        private const val ZOOM_LEVEL_BUILDING = 20f
     }
 }

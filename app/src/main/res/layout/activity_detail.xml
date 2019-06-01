@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:backgroundTint="@color/colorPrimary"
-            app:fabAlignmentMode="center"
+            app:fabAlignmentMode="end"
     />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             app:layout_anchorGravity="bottom|end"
             app:backgroundTint="@color/colorPrimaryDark"
-            app:tint="@android:color/darker_gray"
+            app:tint="@color/blue"
             app:rippleColor="#ddd"
             app:srcCompat="@drawable/ic_local_ticket"
             app:layout_anchor="@id/bar"/>
