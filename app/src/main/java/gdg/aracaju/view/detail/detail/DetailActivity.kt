@@ -33,10 +33,7 @@ class DetailActivity : AppCompatActivity() {
     private val id by lazy { intent?.extras?.get(ID) as? Int }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(
-            this,
-            DetailViewModelFactory(service)
-        ).get(DetailViewModel::class.java)
+        ViewModelProviders.of(this, DetailViewModelFactory(service)).get(DetailViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

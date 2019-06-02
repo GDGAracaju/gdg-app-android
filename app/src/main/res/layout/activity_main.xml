@@ -8,7 +8,6 @@
         android:fitsSystemWindows="true"
         android:background="#FFFFFF">
 
-
     <androidx.appcompat.widget.Toolbar
             android:layout_height="wrap_content"
             android:layout_width="match_parent"

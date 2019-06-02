@@ -23,5 +23,8 @@
     <string name="title_activity_maps_detail">Map</string>
 
     <string name="share_info_title">Compartilhar via:</string>
-    <string name="title_cabs">Ir  ao evento com:</string>
+    <string name="title_cabs">Ir ao evento com:</string>
+    <string name="login_screen_text">Acompanhe de perto os próximos eventos do GDG Aracaju</string>
+    <string name="login_failed">Falha ao acessar</string>
+    <string name="login_button_Text">Acessar</string>
 </resources>

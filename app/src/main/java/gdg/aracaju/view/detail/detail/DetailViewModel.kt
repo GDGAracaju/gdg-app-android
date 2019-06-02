@@ -45,4 +45,9 @@ class DetailViewModel(private val service: DetailService) : ViewModel(), Corouti
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        jobs.forEach { it.cancel() }
+    }
 }
