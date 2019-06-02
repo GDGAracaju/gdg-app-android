@@ -57,6 +57,8 @@ dependencies {
     implementation Dependencies.material
     implementation Dependencies.firebaseDataBase
     implementation Dependencies.picasso
+    implementation Dependencies.maps
+    implementation Dependencies.threetenabp
 
     testImplementation DependenciesTest.junit4
     androidTestImplementation DependenciesTest.androidRunner

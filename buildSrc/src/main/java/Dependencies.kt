@@ -3,6 +3,7 @@ object Versions {
     const val appCompat = "1.0.2"
     const val constraint = "1.1.3"
     const val androidX = "1.0.0"
+    const val material = "1.1.0-alpha07"
     const val groupie = "2.3.0"
     const val gms = "4.2.0"
     const val gradle = "3.4.1"
@@ -11,6 +12,8 @@ object Versions {
     const val coroutine = "1.1.1"
     const val lifecycle = "2.0.0"
     const val picasso = "2.71828"
+    const val threeten = "1.2.0"
+    const val maps = "16.1.0"
 }
 
 object Dependencies {
@@ -21,7 +24,7 @@ object Dependencies {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.androidX}"
     const val cardView = "androidx.cardview:cardview:${Versions.androidX}"
-    const val material = "com.google.android.material:material:${Versions.androidX}"
+    const val material = "com.google.android.material:material:${Versions.material}"
 
     const val gms = "com.google.gms:google-services:${Versions.gms}"
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -38,6 +41,9 @@ object Dependencies {
     const val groupieKotlin = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
     const val aacLifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
+    const val maps ="com.google.android.gms:play-services-maps:${Versions.maps}"
+
+    const val threetenabp = "com.jakewharton.threetenabp:threetenabp:${Versions.threeten}"
 }
 
 object VersionsTest {
@@ -53,5 +59,3 @@ object DependenciesTest {
     const val androidRunner = "androidx.test:runner:${VersionsTest.runner}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${VersionsTest.espresso}"
 }
-
-

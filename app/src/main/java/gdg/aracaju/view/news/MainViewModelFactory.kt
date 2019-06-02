@@ -9,5 +9,4 @@ internal class MainViewModelFactory(private val service: EventsService) : ViewMo
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return MainViewModel(service) as T
     }
-
 }
