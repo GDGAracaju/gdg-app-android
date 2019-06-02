@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -30,6 +31,7 @@ class MapsDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_maps_detail)
         configMap()
         toolbarMap.setNavigationOnClickListener { finish() }
+        bottomSheet.isVisible = false
         configBottomSheet()
     }
 
@@ -42,7 +44,7 @@ class MapsDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun configBottomSheet() {
         bottomSheetBehavior.apply {
             isHideable = false
-            state = BottomSheetBehavior.STATE_HIDDEN
+            state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
 
@@ -72,6 +74,7 @@ class MapsDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             }
             cabs.layoutManager = manager
             cabs.adapter = adapter
+            bottomSheet.isVisible = true
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
     }
