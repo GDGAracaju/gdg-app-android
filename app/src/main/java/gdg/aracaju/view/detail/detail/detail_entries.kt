@@ -1,5 +1,6 @@
 package gdg.aracaju.view.detail.detail
 
+import androidx.core.view.isVisible
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import gdg.aracaju.domain.model.Talk
@@ -15,12 +16,14 @@ class TalkEntry(private val talk: Talk, private val onClick: () -> Unit) : Item(
     override fun getLayout() = R.layout.item_talk
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        viewHolder.itemView.author.text = talk.author
-        viewHolder.itemView.title.text = talk.title
-        viewHolder.itemView.time.text = talk.time
+        with(viewHolder.itemView) {
+            talk.author?.let { author.text = talk.author } ?: let { author.isVisible = false }
+            title.text = talk.title
+            time.text = talk.time
 
-        viewHolder.itemView.container.setOnClickListener {
-            onClick()
+            container.setOnClickListener {
+                onClick()
+            }
         }
     }
 }

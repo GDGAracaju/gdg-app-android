@@ -72,6 +72,11 @@ internal class DashboardActivity : AppCompatActivity() {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(state.url)))
                 bottomNavDrawerFragment.dismiss()
             }
+
+            is CallToAction.Site -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(state.url)))
+                bottomNavDrawerFragment.dismiss()
+            }
         }
     }
 

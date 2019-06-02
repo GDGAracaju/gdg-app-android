@@ -21,10 +21,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         super.onActivityCreated(savedInstanceState)
 
         navigation.setNavigationItemSelectedListener { menuItem ->
-            val id = menuItem.itemId
             when (menuItem!!.itemId) {
                 R.id.exit -> actions.value = Action.Logout
                 R.id.contribute -> actions.value = Action.Contribute
+                R.id.site -> actions.value = Action.Site
             }
             true
         }

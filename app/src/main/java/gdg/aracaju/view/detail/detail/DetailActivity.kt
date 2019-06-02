@@ -21,6 +21,7 @@ import gdg.aracaju.news.R
 import gdg.aracaju.view.detail.map.MapsDetailActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
+import kotlinx.android.synthetic.main.error_state_layout.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -72,14 +73,27 @@ class DetailActivity : AppCompatActivity() {
 
     private fun manageState(state: ScreenState<Detail>) {
         when (state) {
-            is ScreenState.Loading -> loadingStateView.isVisible = true
+            is ScreenState.Loading -> setupLoadingState()
             is ScreenState.Content -> setupContent(state.result)
-            is ScreenState.Error -> errorStateView.isVisible = true
+            is ScreenState.Error -> setupErrorState()
+        }
+    }
+
+    private fun setupLoadingState() {
+        loadingStateView.isVisible = true
+        errorStateView.isVisible = false
+    }
+
+    private fun setupErrorState() {
+        errorStateView.isVisible = true
+        buttonErrorTryAgain.setOnClickListener {
+            viewModel.retrieveDetail(id)
         }
     }
 
     private fun setupContent(result: Detail) {
         loadingStateView.isVisible = false
+        errorStateView.isVisible = false
         with(result) {
             val header = Header(
                 title = title,

@@ -52,6 +52,9 @@ internal class DashboardViewModel(
                 stateForAction.value =
                     Contribute("https://github.com/GDGAracaju/gdg-app-android/blob/master/README.md")
             }
+
+            is Action.Site -> stateForAction.value =
+                CallToAction.Site("https://gdgaracaju.com.br")
         }
     }
 
