@@ -3,11 +3,14 @@ package gdg.aracaju.view.news
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import gdg.aracaju.data.api.events.EventsRepository
@@ -46,6 +49,19 @@ internal class DashboardActivity : AppCompatActivity() {
         viewModel.listenToEvents().observe(this, Observer { state -> handleState(state) })
         viewModel.listenToActions().observe(this, Observer { state -> handleStateToActions(state) })
         viewModel.actions.observe(this, Observer { viewModel.passAction(it) })
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    return@OnCompleteListener
+                }
+
+                // Get new Instance ID token
+                val token = task.result?.token
+
+                // Log and toast
+
+                Log.d("TOOKEN", token)
+            })
     }
 
     private fun handleState(state: ScreenState<List<Event>>) {

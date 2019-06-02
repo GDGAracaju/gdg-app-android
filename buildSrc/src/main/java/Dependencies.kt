@@ -16,6 +16,7 @@ object Versions {
     const val maps = "16.1.0"
     const val firebaseAuth = "16.2.1"
     const val googleAuth = "16.0.1"
+    const val notification = "17.6.0"
 }
 
 object Dependencies {
@@ -45,10 +46,12 @@ object Dependencies {
     const val aacLifecycleJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
 
-    const val maps ="com.google.android.gms:play-services-maps:${Versions.maps}"
+    const val maps = "com.google.android.gms:play-services-maps:${Versions.maps}"
     const val googleAuth = "com.google.android.gms:play-services-auth:${Versions.googleAuth}"
 
     const val threetenabp = "com.jakewharton.threetenabp:threetenabp:${Versions.threeten}"
+
+    const val notification = "com.google.firebase:firebase-messaging:${Versions.notification}"
 }
 
 object VersionsTest {

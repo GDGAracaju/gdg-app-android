@@ -30,6 +30,7 @@
             android:layout_gravity="bottom"
             app:backgroundTint="@color/colorPrimary"
             app:fabAlignmentMode="end"
+            app:fabAnimationMode="slide"
     />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

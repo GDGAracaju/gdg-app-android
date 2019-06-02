@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GdgNews</string>
+    <string name="app_name">Gdg Aracaju</string>
     <string name="image_of_event">image of event</string>
     <string name="text_no_events_found">Nenhum evento encontrado :(</string>
     <string name="Loading">loading</string>
