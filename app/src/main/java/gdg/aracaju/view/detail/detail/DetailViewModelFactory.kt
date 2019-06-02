@@ -1,9 +1,8 @@
-package gdg.aracaju.view.detail
+package gdg.aracaju.view.detail.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import gdg.aracaju.domain.service.DetailService
-import gdg.aracaju.domain.service.EventsService
 
 internal class DetailViewModelFactory(private val service: DetailService) : ViewModelProvider.NewInstanceFactory() {
 

@@ -34,17 +34,23 @@
                 android:value="@string/google_maps_key"/>
 
         <activity
-                android:name="gdg.aracaju.view.detail.MapsDetailActivity"
-                android:label="@string/title_activity_maps_detail">
+                android:name="gdg.aracaju.view.detail.map.MapsDetailActivity"
+                android:label="@string/title_activity_maps_detail"
+                android:theme="@style/AppTheme"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <activity
-                android:name="gdg.aracaju.view.detail.DetailActivity"
+                android:name="gdg.aracaju.view.detail.detail.DetailActivity"
                 android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden"
                 android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name="gdg.aracaju.view.news.MainActivity"
-                android:theme="@style/AppTheme">
+                android:theme="@style/AppTheme"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

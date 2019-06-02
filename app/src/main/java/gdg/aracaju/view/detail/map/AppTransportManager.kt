@@ -1,42 +1,46 @@
-package gdg.aracaju.view.detail
+package gdg.aracaju.view.detail.map
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import gdg.aracaju.domain.model.Location
+import gdg.aracaju.news.R
 
 object AppTransportManager {
 
-    fun retrieveListOfTransportApps(context: Context, location: Location): List<Transport> {
+    fun retrieveListOfTransportApps(context: Context, location: Location): List<CabItem> {
         val packageManager = context.packageManager
 
         val isUberInstalled = isPackageInstalled(uberPackage, packageManager)
         val isNineNineInstalled = isPackageInstalled(nineNinePackage, packageManager)
         val isCabifyInstalled = isPackageInstalled(cabifyPackage, packageManager)
 
-        return mutableListOf<Transport>().apply {
+        return mutableListOf<CabItem>().apply {
             if (isCabifyInstalled) add(
-                Transport(
-                    nameApp = "Cabify",
-                    intent = packageManager.getLaunchIntentForPackage(cabifyPackage)!!
+                CabItem(
+                    title = "Cabify",
+                    action = packageManager.getLaunchIntentForPackage(cabifyPackage)!!,
+                    img = R.drawable.ic_cabify
                 )
             )
             if (isNineNineInstalled) add(
-                Transport(
-                    nameApp = "99 Táxi",
-                    intent = packageManager.getLaunchIntentForPackage(nineNinePackage)!!
+                CabItem(
+                    title = "99 Táxi",
+                    action = packageManager.getLaunchIntentForPackage(nineNinePackage)!!,
+                    img = R.drawable.ic_nine_nine
                 )
             )
 
             if (isUberInstalled) {
                 add(
-                    Transport(
-                        nameApp = " Uber ",
-                        intent = Intent(
+                    CabItem(
+                        title = " Uber ",
+                        action = Intent(
                             Intent.ACTION_VIEW,
                             Uri.parse("uber://?action=setPickup&pickup=my_location&dropoff[latitude]=${location.latitude}&dropoff[longitude]=${location.longitude}")
-                        )
+                        ),
+                        img = R.drawable.ic_uber
                     )
                 )
             }
@@ -52,11 +56,6 @@ object AppTransportManager {
             false
         }
     }
-
-    data class Transport(
-        val nameApp: String,
-        val intent: Intent
-    )
 
     private val nineNinePackage = "com.taxis99"
     private val uberPackage = "com.ubercab"

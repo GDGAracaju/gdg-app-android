@@ -1,4 +1,4 @@
-package gdg.aracaju.view.detail
+package gdg.aracaju.view.detail.detail
 
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
@@ -17,6 +17,7 @@ class TalkEntry(private val talk: Talk, private val onClick: () -> Unit) : Item(
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.author.text = talk.author
         viewHolder.itemView.title.text = talk.title
+        viewHolder.itemView.time.text = talk.time
 
         viewHolder.itemView.container.setOnClickListener {
             onClick()
@@ -24,7 +25,7 @@ class TalkEntry(private val talk: Talk, private val onClick: () -> Unit) : Item(
     }
 }
 
-class LabelEntry() : Item() {
+class LabelEntry : Item() {
 
     override fun getLayout() = R.layout.item_talk_title
 
@@ -39,7 +40,9 @@ class HeaderEntry(private val header: Header) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         with(viewHolder.itemView) {
             val schedule = bold("${context.getString(R.string.label_date)} ") +
-                    normal("${header.date} ") + bold("${context.getString(R.string.label_hour)} ") + normal(header.time)
+                    normal("${header.date} ") +
+                    bold("${context.getString(R.string.label_hour)} ") +
+                    normal("${header.time.start} - ${header.time.end}")
 
             eventTitle.text = header.title
             scheduleEvent.text = schedule
@@ -48,4 +51,3 @@ class HeaderEntry(private val header: Header) : Item() {
         }
     }
 }
-

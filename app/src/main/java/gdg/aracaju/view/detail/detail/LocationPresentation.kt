@@ -1,6 +1,7 @@
-package gdg.aracaju.view.detail
+package gdg.aracaju.view.detail.detail
 
 import gdg.aracaju.domain.model.Location
+import gdg.aracaju.domain.model.Time
 import java.io.Serializable
 
 data class LocationPresentation(
@@ -11,7 +12,7 @@ data class LocationPresentation(
 data class Header(
     val title: String,
     val date: String,
-    val time: String,
+    val time: Time,
     val address: String,
     val description: String
 )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/container"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
             android:layout_marginEnd="8dp"
-            android:text="10:00"/>
+    />
 
     <TextView
             android:id="@+id/title"

@@ -8,7 +8,7 @@ data class Detail(
     val description: String,
     val location: Location,
     val subscriptionUrl: String,
-    val time: String,
+    val time: Time,
     val title: String,
     val talks: List<Talk>,
     val type: EventType
@@ -21,7 +21,13 @@ data class Location(
 
 data class Talk(
     val author: String,
-    val title: String
+    val title: String,
+    val time: String
+)
+
+data class Time(
+    val start: String,
+    val end: String
 )
 
 enum class EventType {

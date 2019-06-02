@@ -21,4 +21,7 @@
     <string name="menu_share">Compartilhar</string>
 
     <string name="title_activity_maps_detail">Map</string>
+
+    <string name="share_info_title">Compartilhar via:</string>
+    <string name="title_cabs">Ir  ao evento com:</string>
 </resources>

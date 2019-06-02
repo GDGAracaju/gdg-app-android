@@ -14,7 +14,7 @@ internal class NewsEntry(private val event: Event, private val onClick: () -> Un
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.titleEvent.text = event.nameEvent
         viewHolder.itemView.eventDate.text = event.date
-        viewHolder.itemView.eventTime.text = event.time
+        viewHolder.itemView.eventTime.text = "${event.time.start} - ${event.time.end}"
         Picasso.get().load(event.imgUrl).into(viewHolder.itemView.imageEvent)
 
         viewHolder.itemView.card.setOnClickListener {

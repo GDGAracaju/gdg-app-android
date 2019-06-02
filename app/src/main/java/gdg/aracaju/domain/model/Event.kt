@@ -6,5 +6,5 @@ internal data class Event(
     val date: String,
     val imgUrl: String,
     val idDetails: Int,
-    val time: String
+    val time: Time
 )

@@ -12,7 +12,7 @@ import gdg.aracaju.data.api.events.EventsRepository
 import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
-import gdg.aracaju.view.detail.DetailActivity
+import gdg.aracaju.view.detail.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.error_state_layout.*
 
@@ -42,7 +42,10 @@ internal class MainActivity : AppCompatActivity() {
         when (state) {
             is ScreenState.Content -> showContent(state.result)
             is ScreenState.Loading -> showLoadingView()
-            is ScreenState.Error -> showErrorState()
+            is ScreenState.Error -> {
+                state.e.printStackTrace()
+                showErrorState()
+            }
         }
     }
 

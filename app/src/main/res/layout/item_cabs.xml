@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:padding="8dp">
+
+    <ImageView
+            android:id="@+id/imgApp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"/>
+
+    <TextView
+            android:id="@+id/cabsName"
+            android:layout_toEndOf="@id/imgApp"
+            android:layout_alignTop="@id/imgApp"
+            android:layout_alignBottom="@id/imgApp"
+            android:gravity="center|start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</RelativeLayout>

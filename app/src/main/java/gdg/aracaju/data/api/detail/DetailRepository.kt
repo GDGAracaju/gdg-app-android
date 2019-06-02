@@ -2,8 +2,7 @@ package gdg.aracaju.data.api.detail
 
 import gdg.aracaju.data.api.ApiBuilder
 import gdg.aracaju.data.api.ServerGateway
-import gdg.aracaju.domain.model.Detail
-import gdg.aracaju.domain.model.EventType
+import gdg.aracaju.domain.model.*
 import gdg.aracaju.domain.model.Location
 import gdg.aracaju.domain.model.Talk
 import gdg.aracaju.domain.service.DetailService
@@ -24,9 +23,9 @@ internal class DetailRepository(private val api: ServerGateway = ApiBuilder) : D
                 longitude = location.long
             ),
             subscriptionUrl = subscription,
-            time = time,
+            time = Time(time.start, time.end),
             title = title,
-            talks = talks.filter { it != null }.map { Talk(author = it!!.author, title = it!!.title) },
+            talks = talks.filter { it != null }.map { Talk(author = it!!.author, title = it.title, time = it.time) },
             type = mapType(type)
         )
     }

@@ -1,12 +1,9 @@
-package gdg.aracaju.view.detail
+package gdg.aracaju.view.detail.detail
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.CalendarContract
-import android.provider.CalendarContract.Events.ALL_DAY
-import android.provider.CalendarContract.Events.TITLE
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -21,20 +18,26 @@ import gdg.aracaju.domain.Date
 import gdg.aracaju.domain.model.Detail
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
+import gdg.aracaju.view.detail.map.MapsDetailActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
 
 class DetailActivity : AppCompatActivity() {
 
     private val service by lazy { DetailRepository() }
-
-    private val viewModel by lazy {
-        ViewModelProviders.of(this, DetailViewModelFactory(service)).get(DetailViewModel::class.java)
-    }
+    private val sharer by lazy { Sharer(this) }
     private val adapter by lazy { GroupAdapter<ViewHolder>() }
     private val manager by lazy { LinearLayoutManager(this) }
+    private val calendar by lazy { CalendarEvent(this) }
 
     private val id by lazy { intent?.extras?.get(ID) as? Int }
+
+    private val viewModel by lazy {
+        ViewModelProviders.of(
+            this,
+            DetailViewModelFactory(service)
+        ).get(DetailViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,32 +62,22 @@ class DetailActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.map -> {
-                viewModel.listToLocation().value?.let {
+                viewModel.listenToLocation().value?.let {
                     startActivity(MapsDetailActivity.newInstance(this, it))
                 }
             }
             R.id.share -> {
-
+                viewModel.listenEvent().value.let {
+                    if (it is ScreenState.Content) {
+                        sharer.share(it.result)
+                    }
+                }
             }
 
             R.id.calendar -> {
                 viewModel.listenEvent().value.let {
                     if (it is ScreenState.Content) {
-                        val intent = Intent(Intent.ACTION_EDIT)
-                        intent.type = "vnd.android.cursor.item/event"
-                        intent.putExtra(TITLE, it.result.title)
-                        intent.putExtra(
-                            CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                            Date.getTimeInMillis("2019-07-16", "09:00:00")
-                        )
-                        intent.putExtra(
-                            CalendarContract.EXTRA_EVENT_END_TIME,
-                            Date.getTimeInMillis("2019-07-16", "17:00")
-                        )
-                        intent.putExtra(ALL_DAY, false)
-                        intent.resolveActivity(packageManager)?.let {
-                            startActivity(intent)
-                        }
+                        calendar.createNewEvent(it.result)
                     }
                 }
             }
@@ -107,7 +100,13 @@ class DetailActivity : AppCompatActivity() {
     private fun setupContent(result: Detail) {
         loadingStateView.isVisible = false
         with(result) {
-            val header = Header(title = title, date = date, time = time, address = address, description = description)
+            val header = Header(
+                title = title,
+                date = Date.toCurrentFormat(date), //FIXME
+                time = time,
+                address = address,
+                description = description
+            )
 
             adapter.add(HeaderEntry(header))
 

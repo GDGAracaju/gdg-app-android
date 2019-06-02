@@ -1,4 +1,4 @@
-package gdg.aracaju.view.detail
+package gdg.aracaju.view.detail.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,7 +25,7 @@ class DetailViewModel(private val service: DetailService) : ViewModel(), Corouti
     private val jobs = ArrayList<Job>()
 
     fun listenEvent(): LiveData<ScreenState<Detail>> = event
-    fun listToLocation(): LiveData<LocationPresentation> = location
+    fun listenToLocation(): LiveData<LocationPresentation> = location
 
     fun retrieveDetail(id: Int?) {
         jobs add launch {

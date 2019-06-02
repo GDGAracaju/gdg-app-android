@@ -18,5 +18,4 @@
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
     </style>
-
 </resources>
