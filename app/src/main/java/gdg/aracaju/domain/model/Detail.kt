@@ -20,7 +20,7 @@ data class Location(
 ) : Serializable
 
 data class Talk(
-    val author: String,
+    val author: String?,
     val title: String,
     val time: String
 )

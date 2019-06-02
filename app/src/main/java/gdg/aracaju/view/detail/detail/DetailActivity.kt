@@ -21,6 +21,7 @@ import gdg.aracaju.news.R
 import gdg.aracaju.view.detail.map.MapsDetailActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
+import kotlinx.android.synthetic.main.error_state_layout.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -33,10 +34,7 @@ class DetailActivity : AppCompatActivity() {
     private val id by lazy { intent?.extras?.get(ID) as? Int }
 
     private val viewModel by lazy {
-        ViewModelProviders.of(
-            this,
-            DetailViewModelFactory(service)
-        ).get(DetailViewModel::class.java)
+        ViewModelProviders.of(this, DetailViewModelFactory(service)).get(DetailViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,10 +42,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         setSupportActionBar(bar)
         toolbarDetail.setNavigationOnClickListener { finish() }
-        viewModel.listenEvent().observe(this, Observer {
-            manageState(it)
-        })
-
+        viewModel.listenEvent().observe(this, Observer { manageState(it) })
         viewModel.retrieveDetail(id)
         setupRv()
     }
@@ -59,28 +54,15 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val state = viewModel.listenEvent().value
+        val detail: Detail? = if (state is ScreenState.Content) state.result else null
 
         when (item.itemId) {
-            R.id.map -> {
-                viewModel.listenToLocation().value?.let {
-                    startActivity(MapsDetailActivity.newInstance(this, it))
-                }
+            R.id.map -> viewModel.listenToLocation().value?.let {
+                startActivity(MapsDetailActivity.newInstance(this, it))
             }
-            R.id.share -> {
-                viewModel.listenEvent().value.let {
-                    if (it is ScreenState.Content) {
-                        sharer.share(it.result)
-                    }
-                }
-            }
-
-            R.id.calendar -> {
-                viewModel.listenEvent().value.let {
-                    if (it is ScreenState.Content) {
-                        calendar.createNewEvent(it.result)
-                    }
-                }
-            }
+            R.id.share -> detail?.let { sharer.share(it) }
+            R.id.calendar -> detail?.let { calendar.createNewEvent(it) }
         }
         return true
     }
@@ -91,14 +73,27 @@ class DetailActivity : AppCompatActivity() {
 
     private fun manageState(state: ScreenState<Detail>) {
         when (state) {
-            is ScreenState.Loading -> loadingStateView.isVisible = true
+            is ScreenState.Loading -> setupLoadingState()
             is ScreenState.Content -> setupContent(state.result)
-            is ScreenState.Error -> errorStateView.isVisible = true
+            is ScreenState.Error -> setupErrorState()
+        }
+    }
+
+    private fun setupLoadingState() {
+        loadingStateView.isVisible = true
+        errorStateView.isVisible = false
+    }
+
+    private fun setupErrorState() {
+        errorStateView.isVisible = true
+        buttonErrorTryAgain.setOnClickListener {
+            viewModel.retrieveDetail(id)
         }
     }
 
     private fun setupContent(result: Detail) {
         loadingStateView.isVisible = false
+        errorStateView.isVisible = false
         with(result) {
             val header = Header(
                 title = title,
@@ -112,7 +107,8 @@ class DetailActivity : AppCompatActivity() {
 
             if (talks.isNotEmpty()) {
                 adapter.add(LabelEntry())
-                talks.forEach { adapter.add(TalkEntry(it) {}) }
+                talks
+                    .forEach { adapter.add(TalkEntry(it) {}) }
                     .also { talksRv.adapter = adapter }
             }
 

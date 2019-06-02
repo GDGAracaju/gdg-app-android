@@ -25,7 +25,7 @@ internal data class Location(val lat: String = "", val long: String = "")
 
 @Keep
 internal data class TalkResponse(
-    val author: String = "",
+    val author: String? = "",
     val title: String = "",
     val time: String = ""
 )

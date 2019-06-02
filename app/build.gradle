@@ -59,6 +59,9 @@ dependencies {
     implementation Dependencies.picasso
     implementation Dependencies.maps
     implementation Dependencies.threetenabp
+    implementation Dependencies.firebaseAuth
+    implementation Dependencies.googleAuth
+    implementation Dependencies.notification
 
     testImplementation DependenciesTest.junit4
     androidTestImplementation DependenciesTest.androidRunner

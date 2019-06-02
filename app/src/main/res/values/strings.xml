@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">GdgNews</string>
+    <string name="app_name">Gdg Aracaju</string>
     <string name="image_of_event">image of event</string>
     <string name="text_no_events_found">Nenhum evento encontrado :(</string>
     <string name="Loading">loading</string>
     <string name="text_button_try_again">Tentar novamente</string>
     <string name="title_no_events_found">Nenhum evento cadastrado</string>
+    <string name="app_title">Gdg Aracaju</string>
     <string name="text_description_no_events_found">Não há eventos cadastrados. Fique ligado, o proximo evento logo
         estará disponível aqui!
     </string>
@@ -20,8 +21,17 @@
     <string name="menu_calendar">Calendário</string>
     <string name="menu_share">Compartilhar</string>
 
+    <string name="menu_exit">Sair</string>
+    <string name="menu_contribute">Como contribuir</string>
+    <string name="menu_library">Bibliotecas usadas</string>
+    <string name="menu_web">Site</string>
+
     <string name="title_activity_maps_detail">Map</string>
 
     <string name="share_info_title">Compartilhar via:</string>
-    <string name="title_cabs">Ir  ao evento com:</string>
+    <string name="title_cabs">Ir ao evento com:</string>
+    <string name="login_screen_text">Acompanhe de perto os próximos eventos do GDG Aracaju</string>
+    <string name="login_failed">Falha ao acessar</string>
+    <string name="login_button_Text">Acessar</string>
+
 </resources>
