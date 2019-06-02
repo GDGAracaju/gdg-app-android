@@ -41,10 +41,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         setSupportActionBar(bar)
         toolbarDetail.setNavigationOnClickListener { finish() }
-        viewModel.listenEvent().observe(this, Observer {
-            manageState(it)
-        })
-
+        viewModel.listenEvent().observe(this, Observer { manageState(it) })
         viewModel.retrieveDetail(id)
         setupRv()
     }
@@ -56,28 +53,15 @@ class DetailActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val state = viewModel.listenEvent().value
+        val detail: Detail? = if (state is ScreenState.Content) state.result else null
 
         when (item.itemId) {
-            R.id.map -> {
-                viewModel.listenToLocation().value?.let {
-                    startActivity(MapsDetailActivity.newInstance(this, it))
-                }
+            R.id.map -> viewModel.listenToLocation().value?.let {
+                startActivity(MapsDetailActivity.newInstance(this, it))
             }
-            R.id.share -> {
-                viewModel.listenEvent().value.let {
-                    if (it is ScreenState.Content) {
-                        sharer.share(it.result)
-                    }
-                }
-            }
-
-            R.id.calendar -> {
-                viewModel.listenEvent().value.let {
-                    if (it is ScreenState.Content) {
-                        calendar.createNewEvent(it.result)
-                    }
-                }
-            }
+            R.id.share -> detail?.let { sharer.share(it) }
+            R.id.calendar -> detail?.let { calendar.createNewEvent(it) }
         }
         return true
     }
@@ -109,7 +93,8 @@ class DetailActivity : AppCompatActivity() {
 
             if (talks.isNotEmpty()) {
                 adapter.add(LabelEntry())
-                talks.forEach { adapter.add(TalkEntry(it) {}) }
+                talks
+                    .forEach { adapter.add(TalkEntry(it) {}) }
                     .also { talksRv.adapter = adapter }
             }
 

@@ -7,7 +7,7 @@ import gdg.aracaju.domain.model.Event
 import gdg.aracaju.news.R
 import kotlinx.android.synthetic.main.item_news.view.*
 
-internal class NewsEntry(private val event: Event, private val onClick: () -> Unit) : Item() {
+internal class DashboardEntry(private val event: Event, private val onClick: () -> Unit) : Item() {
 
     override fun getLayout() = R.layout.item_news
 

@@ -38,7 +38,7 @@
                 android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
         <activity
-                android:name="gdg.aracaju.view.news.MainActivity"
+                android:name="gdg.aracaju.view.news.DashboardActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme"
                 android:windowSoftInputMode="stateAlwaysHidden"/>

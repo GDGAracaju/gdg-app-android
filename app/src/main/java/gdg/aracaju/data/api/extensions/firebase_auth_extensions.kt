@@ -7,10 +7,10 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend inline fun FirebaseAuth.signIn(authCredential: AuthCredential): LoginState =
+internal suspend inline fun FirebaseAuth.signIn(authCredential: AuthCredential): LoginState =
     suspendCancellableCoroutine { continuation ->
 
-        this.signInWithCredential(authCredential)
+        signInWithCredential(authCredential)
             .addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> LoginState.Authenticated

@@ -7,4 +7,6 @@ interface AuthService {
     fun loginStatus(): LoginState
 
     suspend fun authenticate(token: String?): LoginState
+
+    fun logout()
 }

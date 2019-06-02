@@ -2,12 +2,15 @@ package gdg.aracaju.view.login
 
 import android.content.Intent
 import gdg.aracaju.domain.model.LoginState
+import gdg.aracaju.domain.model.LogoutState
 
-internal interface SignInControl {
+internal interface AuthControl {
 
-    fun start()
+    fun login()
+
+    fun loginStatus(): LoginState
 
     suspend fun loginResult(data: Intent?): LoginState
 
-    fun loginStatus(): LoginState
+    fun logout(): LogoutState
 }

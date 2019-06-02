@@ -15,4 +15,6 @@ internal class AuthRepository(private val api: ServerGateway = ApiBuilder) : Aut
     }
 
     override suspend fun authenticate(token: String?): LoginState = api.authenticate(token)
+
+    override fun logout() = api.logout()
 }

@@ -12,14 +12,14 @@ import gdg.aracaju.data.api.login.AuthRepository
 import gdg.aracaju.domain.model.LoginState
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
-import gdg.aracaju.view.login.SignInManager.Companion.RC_SIGN_IN
-import gdg.aracaju.view.news.MainActivity
+import gdg.aracaju.view.login.AuthManager.Companion.RC_SIGN_IN
+import gdg.aracaju.view.news.DashboardActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
     private val service by lazy { AuthRepository() }
-    private val manager by lazy { SignInManager(this, service) }
+    private val manager by lazy { AuthManager(this, service) }
 
     private val viewModel by lazy {
         ViewModelProviders.of(this, LoginViewModelFactory(manager)).get(LoginViewModel::class.java)
@@ -52,12 +52,10 @@ class LoginActivity : AppCompatActivity() {
     private fun LoginState.verify() {
         when (this) {
             LoginState.Authenticated -> {
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                 finish()
             }
-            LoginState.NotAuthenticated -> {
-                signInButton.isClickable = true
-            }
+            LoginState.NotAuthenticated -> signInButton.isClickable = true
         }
     }
 

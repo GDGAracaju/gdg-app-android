@@ -43,6 +43,9 @@ internal object ApiBuilder : ServerGateway, CoroutineScope {
         return auth.signIn(credential)
     }
 
-    override fun hasUser(): Boolean = auth.currentUser != null
+    override fun logout() {
+        auth.signOut()
+    }
 
+    override fun hasUser(): Boolean = auth.currentUser != null
 }

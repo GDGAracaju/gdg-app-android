@@ -12,5 +12,7 @@ internal interface ServerGateway {
 
     suspend fun authenticate(token: String?): LoginState
 
+    fun logout()
+
     fun hasUser(): Boolean
 }

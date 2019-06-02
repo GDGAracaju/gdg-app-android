@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 
-internal class LoginViewModel(private val manager: SignInControl) : ViewModel(), CoroutineScope {
+internal class LoginViewModel(private val manager: AuthControl) : ViewModel(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
@@ -26,13 +26,13 @@ internal class LoginViewModel(private val manager: SignInControl) : ViewModel(),
 
     private val jobs = ArrayList<Job>()
 
-//    init {
-//        loginResult.value = ScreenState.Loading
-//        loginResult.value = ScreenState.Content(manager.loginStatus())
-//    }
+    init {
+        loginResult.value = ScreenState.Loading
+        loginResult.value = ScreenState.Content(manager.loginStatus())
+    }
 
     fun startLogin() {
-        manager.start()
+        manager.login()
     }
 
     fun loginResult(data: Intent?) {
