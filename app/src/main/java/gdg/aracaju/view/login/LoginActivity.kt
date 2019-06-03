@@ -55,7 +55,10 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                 finish()
             }
-            LoginState.NotAuthenticated -> signInButton.isClickable = true
+            LoginState.NotAuthenticated -> {
+                loading.isVisible = false
+                signInButton.isClickable = true
+            }
         }
     }
 

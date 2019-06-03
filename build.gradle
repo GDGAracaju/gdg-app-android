@@ -2,12 +2,15 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
         classpath Dependencies.gradle
         classpath Dependencies.kotlinPlugin
         classpath Dependencies.gms
+        classpath Dependencies.fabric
     }
 }
 

@@ -17,6 +17,8 @@ object Versions {
     const val firebaseAuth = "16.2.1"
     const val googleAuth = "16.0.1"
     const val notification = "17.6.0"
+    const val fabric = "1.26.1"
+    const val crashlytics = "2.9.9"
 }
 
 object Dependencies {
@@ -32,11 +34,11 @@ object Dependencies {
     const val gms = "com.google.gms:google-services:${Versions.gms}"
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
-
+    const val fabric = "io.fabric.tools:gradle:${Versions.fabric}"
     const val firebaseCore = "com.google.firebase:firebase-core:${Versions.firebaseCore}"
     const val firebaseDataBase = "com.google.firebase:firebase-database:${Versions.firebaseDatabase}"
     const val firebaseAuth = "com.google.firebase:firebase-auth:${Versions.firebaseAuth}"
-
+    const val crashLytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}"
     const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
     const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 

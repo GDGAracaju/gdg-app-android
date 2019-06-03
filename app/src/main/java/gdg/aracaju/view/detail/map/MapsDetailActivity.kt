@@ -88,6 +88,6 @@ class MapsDetailActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
 
-        private const val ZOOM_LEVEL_BUILDING = 20f
+        private const val ZOOM_LEVEL_BUILDING = 17f
     }
 }
