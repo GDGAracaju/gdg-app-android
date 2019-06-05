@@ -1,6 +1,8 @@
 /build
-!test_keystore.jks
-!release_keystore.jks
+*.jks
+test_keystore.jks
+release_keystore.jks
 google-services.json
 mapping.txt
 keystore.properties
+/release
