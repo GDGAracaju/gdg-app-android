@@ -5,4 +5,5 @@
     <style name="AppTheme.V27.Translucent" parent="AppTheme.Base.Translucent">
         <item name="android:windowLightNavigationBar">true</item>
     </style>
+
 </resources>
