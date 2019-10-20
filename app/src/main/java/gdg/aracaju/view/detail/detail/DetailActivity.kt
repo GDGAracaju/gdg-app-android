@@ -9,23 +9,26 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
-import gdg.aracaju.data.api.detail.DetailRepository
 import gdg.aracaju.domain.Date
 import gdg.aracaju.domain.model.Detail
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
 import gdg.aracaju.view.detail.map.MapsDetailActivity
+import gdg.aracaju.view.kodein
+import gdg.aracaju.view.viewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
 import kotlinx.android.synthetic.main.error_state_layout.*
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(), KodeinAware {
 
-    private val service by lazy { DetailRepository() }
+    override val kodein: Kodein = kodein()
+
     private val sharer by lazy { Sharer(this) }
     private val adapter by lazy { GroupAdapter<ViewHolder>() }
     private val manager by lazy { LinearLayoutManager(this) }
@@ -33,9 +36,7 @@ class DetailActivity : AppCompatActivity() {
 
     private val id by lazy { intent?.extras?.get(ID) as? Int }
 
-    private val viewModel by lazy {
-        ViewModelProviders.of(this, DetailViewModelFactory(service)).get(DetailViewModel::class.java)
-    }
+    private val viewModel by viewModel<DetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

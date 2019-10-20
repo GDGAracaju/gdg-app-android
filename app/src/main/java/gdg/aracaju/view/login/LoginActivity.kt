@@ -5,25 +5,24 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar.make
-import gdg.aracaju.data.api.login.AuthRepository
 import gdg.aracaju.domain.model.LoginState
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
+import gdg.aracaju.view.kodein
 import gdg.aracaju.view.login.AuthManager.Companion.RC_SIGN_IN
 import gdg.aracaju.view.news.DashboardActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import gdg.aracaju.view.viewModel
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), KodeinAware {
 
-    private val service by lazy { AuthRepository() }
-    private val manager by lazy { AuthManager(this, service) }
+    override val kodein: Kodein = kodein()
 
-    private val viewModel by lazy {
-        ViewModelProviders.of(this, LoginViewModelFactory(manager)).get(LoginViewModel::class.java)
-    }
+    private val viewModel by viewModel<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
