@@ -19,6 +19,7 @@ object Versions {
     const val notification = "17.6.0"
     const val fabric = "1.26.1"
     const val crashlytics = "2.9.9"
+    const val kodein = "6.0.1"
 }
 
 object Dependencies {
@@ -54,6 +55,9 @@ object Dependencies {
     const val threetenabp = "com.jakewharton.threetenabp:threetenabp:${Versions.threeten}"
 
     const val notification = "com.google.firebase:firebase-messaging:${Versions.notification}"
+
+    val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
+    val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodein}"
 }
 
 object VersionsTest {

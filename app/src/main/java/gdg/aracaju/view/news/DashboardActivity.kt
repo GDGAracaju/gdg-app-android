@@ -21,20 +21,20 @@ import gdg.aracaju.news.R
 import gdg.aracaju.view.detail.detail.DetailActivity
 import gdg.aracaju.view.login.AuthManager
 import gdg.aracaju.view.login.LoginActivity
+import gdg.aracaju.view.selfInject
+import gdg.aracaju.view.viewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.error_state_layout.*
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
 
-internal class DashboardActivity : AppCompatActivity() {
+internal class DashboardActivity : AppCompatActivity(), KodeinAware {
 
-    private val eventService by lazy { EventsRepository() }
+    override val kodein: Kodein = selfInject()
+
     private val authService by lazy { AuthRepository() }
-    private val auth by lazy { AuthManager(this, authService) }
 
-    private val viewModel by lazy {
-        ViewModelProviders
-            .of(this, DashboardViewModelFactory(eventService, auth))
-            .get(DashboardViewModel::class.java)
-    }
+    private val viewModel by viewModel<DashboardViewModel>()
     private val adapter by lazy { GroupAdapter<ViewHolder>() }
     private val manager by lazy { LinearLayoutManager(this) }
     private val bottomNavDrawerFragment by lazy { BottomNavigationDrawerFragment() }

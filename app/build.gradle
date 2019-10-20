@@ -94,6 +94,8 @@ dependencies {
     implementation Dependencies.firebaseAuth
     implementation Dependencies.googleAuth
     implementation Dependencies.notification
+    implementation Dependencies.kodein
+    implementation Dependencies.kodeinConf
 
     testImplementation DependenciesTest.junit4
     androidTestImplementation DependenciesTest.androidRunner
