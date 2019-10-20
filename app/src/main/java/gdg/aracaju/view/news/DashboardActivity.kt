@@ -7,21 +7,18 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
-import gdg.aracaju.data.api.events.EventsRepository
 import gdg.aracaju.data.api.login.AuthRepository
 import gdg.aracaju.domain.model.Event
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
 import gdg.aracaju.view.detail.detail.DetailActivity
-import gdg.aracaju.view.login.AuthManager
 import gdg.aracaju.view.login.LoginActivity
-import gdg.aracaju.view.selfInject
+import gdg.aracaju.view.kodein
 import gdg.aracaju.view.viewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.error_state_layout.*
@@ -30,7 +27,7 @@ import org.kodein.di.KodeinAware
 
 internal class DashboardActivity : AppCompatActivity(), KodeinAware {
 
-    override val kodein: Kodein = selfInject()
+    override val kodein: Kodein = kodein()
 
     private val authService by lazy { AuthRepository() }
 

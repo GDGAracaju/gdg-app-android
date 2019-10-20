@@ -8,10 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.direct
-import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.instanceOrNull
-import org.kodein.di.generic.provider
 
 @Suppress("UNCHECKED_CAST")
 inline fun <reified VM : ViewModel> KodeinAware.viewModel() = lazy {
@@ -27,15 +25,11 @@ inline fun <reified VM : ViewModel> KodeinAware.viewModel() = lazy {
     ViewModelProviders.of(host, factory).get(VM::class.java)
 }
 
-fun AppCompatActivity.selfInject(bindings: Kodein.MainBuilder.() -> Unit = {}) = Kodein.lazy {
+fun AppCompatActivity.kodein(bindings: Kodein.MainBuilder.() -> Unit = {}) = Kodein.lazy {
 
     val parentKodein = (applicationContext as KodeinAware).kodein
 
     extend(parentKodein)
-
-    bind<FragmentActivity>() with provider {
-        this@selfInject
-    }
 
     bindings.invoke(this)
 }

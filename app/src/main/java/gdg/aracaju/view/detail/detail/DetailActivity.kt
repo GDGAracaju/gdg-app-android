@@ -17,7 +17,7 @@ import gdg.aracaju.domain.model.Detail
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
 import gdg.aracaju.view.detail.map.MapsDetailActivity
-import gdg.aracaju.view.selfInject
+import gdg.aracaju.view.kodein
 import gdg.aracaju.view.viewModel
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.content_detail.*
@@ -27,7 +27,7 @@ import org.kodein.di.KodeinAware
 
 class DetailActivity : AppCompatActivity(), KodeinAware {
 
-    override val kodein: Kodein = selfInject()
+    override val kodein: Kodein = kodein()
 
     private val sharer by lazy { Sharer(this) }
     private val adapter by lazy { GroupAdapter<ViewHolder>() }

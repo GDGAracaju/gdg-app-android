@@ -10,9 +10,9 @@ import com.google.android.material.snackbar.Snackbar.make
 import gdg.aracaju.domain.model.LoginState
 import gdg.aracaju.domain.model.ScreenState
 import gdg.aracaju.news.R
+import gdg.aracaju.view.kodein
 import gdg.aracaju.view.login.AuthManager.Companion.RC_SIGN_IN
 import gdg.aracaju.view.news.DashboardActivity
-import gdg.aracaju.view.selfInject
 import kotlinx.android.synthetic.main.activity_login.*
 import gdg.aracaju.view.viewModel
 import org.kodein.di.Kodein
@@ -20,7 +20,7 @@ import org.kodein.di.KodeinAware
 
 class LoginActivity : AppCompatActivity(), KodeinAware {
 
-    override val kodein: Kodein = selfInject()
+    override val kodein: Kodein = kodein()
 
     private val viewModel by viewModel<LoginViewModel>()
 
